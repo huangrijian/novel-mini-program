@@ -7,8 +7,12 @@ App.mpType = 'app'
 
 Vue.prototype.$statusBarHeight = uni.getSystemInfoSync().statusBarHeight;
 
+
+
 import myIcon from '@/components/icon.vue';
 Vue.component('my-icon',myIcon)
+import request from '@/common/request';
+Vue.prototype.$http = request;
 
 const app = new Vue({
     ...App
