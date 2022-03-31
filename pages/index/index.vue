@@ -3,45 +3,54 @@
 		<!-- 占位 高度为0-->
 		<view :style="{height:`${statusBarHeight}px`}"></view>
 		<search-box class="m-2" />
-		<rotation-chart :imgArr="imgArr"/>
-		1
+		<rotation-chart :imgArr="swiperImagesArr"/>
+		<function-sort :functionSortArr="functionSortArr"></function-sort>
+		<recommond :Rebooks="Rebooks"></recommond>
+		<block v-for="(item, index) in bookResources" :key="index">
+			<list-header> <template v-slot:title> {{item.headerTitle}} </template> </list-header>
+			<book-list :bookListArr="item.books"></book-list>
+		</block>
 	</view>
 </template>
 
 <script>
-	import rotationChart from '@/components/rotationChart.vue';
-	import searchBox from '@/components/searchBox.vue';
 	export default {
 		data() {
 			return {
 				statusBarHeight: this.$statusBarHeight,
-				imgArr:[{
-					src:'/static/swiperImages/swipertab1.png'
-				},{
-					src:'/static/swiperImages/swipertab2.png'
-				},
-				{
-					src:'/static/swiperImages/swipertab3.png'
-				},
-				{
-					src:'/static/swiperImages/swipertab4.png'
-				},
-				{
-					src:'/static/swiperImages/swipertab5.png'
-				},
-					
-				]
+				Rebooks:[],
+				swiperImagesArr:[],
+				bookResources:[],
+				functionSortArr: [{
+						iconId: 'icon-icon-test',
+						iconColor: 'text-warning',
+						name: '看榜单'
+					},
+					{
+						iconId: 'icon-startRead',
+						iconColor: 'text-hover-primary',
+						name: '听小说'
+					},
+					{
+						iconId: 'icon-icon09',
+						iconColor: 'text-light-black',
+						name: '听音乐'
+					},
+					{
+						iconId: 'icon-zhishi',
+						iconColor: 'text-success',
+						name: '听知识'
+					}
+				],
 			}
 		},
-		components:{
-			searchBox,
-			rotationChart,//轮播图
-		},
 		onLoad() {
-			console.log('onLoad')
-		},
-		created() {
-			console.log('created')
+			// 获取首页全部数据
+			this.$http.get('/app_index').then(res => {
+				this.swiperImagesArr = res.swiperImages;
+				this.Rebooks = res.Rebooks;
+				this.bookResources = res.bookResources;
+			})
 		},
 		methods: {
 		
