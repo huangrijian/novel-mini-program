@@ -2,7 +2,7 @@
 	<view class="content">
 		<!-- 占位 高度为0-->
 		<view :style="{height:`${statusBarHeight}px`}"></view>
-		<search-box class="m-2" />
+		<search-box class="mx-2" />
 		<rotation-chart :imgArr="swiperImagesArr"/>
 		<function-sort :functionSortArr="functionSortArr"></function-sort>
 		<recommond :Rebooks="Rebooks"></recommond>

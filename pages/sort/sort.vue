@@ -1,22 +1,22 @@
 <template>
 	<view>
 		<view class="cal" :style="{height: `${statusBarHeight}px`}"></view>
-		<search-box class="mx-2 cal"></search-box>
-		<view class="cal" style="height: 20rpx;"></view>
+		<search-box class="cal" ></search-box>
+		<view class="cal"  style="height: 20rpx;"></view>
+
 
 		<view class="flex" style="background-color: #f0f3f8;">
 			<!-- 左侧 -->
-			<scroll-view scroll-y class="font text-light-black" style="width: 180rpx;padding: 0 20rpx;"
-				:style="{height: `${calHeight}rpx`}">
+			<scroll-view scroll-y class="font text-light-black" style="width: 180rpx;padding: 0 20rpx;" :style="{height: `${calHeight}rpx`}">
 				<block v-for="(item, index) in leftListRes" :key="index">
-					<view class="animated faster" :class="leftIndex === index ? 'selected pulse font-weight-bold':''"
-						style="height: 150rpx;line-height: 150rpx;" @tap="leftToright(index)">{{item}}</view>
+					<view class="animated faster" :class="leftIndex === index ? 'selected pulse font-weight-bold':''" style="height: 150rpx;line-height: 150rpx;"
+					 @tap="leftToright(index)">{{item}}</view>
 				</block>
 			</scroll-view>
 
 			<!-- 右侧 -->
-			<scroll-view scroll-y :scroll-into-view="rightIndex" scroll-with-animation
-				:style="{height: `${calHeight}rpx`}" @scroll="rightToleft">
+			<scroll-view scroll-y :scroll-into-view="rightIndex" scroll-with-animation :style="{height: `${calHeight}rpx`}"
+			 @scroll="rightToleft">
 				<block v-for="(item, index) in rightListRes" :key="index">
 					<view style="height: 250rpx;margin-bottom: 70rpx;" :id="`right${index}`">
 
@@ -31,8 +31,7 @@
 						<!-- 底部内容 -->
 						<view class="flex flex-wrap bg-white rounded font" style="height: 170rpx;">
 							<block v-for="(mitem, mindex) in item.content" :key="mindex">
-								<view class="flex align-center justify-center" style="width: calc(100% / 3);">{{mitem}}
-								</view>
+								<view class="flex align-center justify-center" style="width: calc(100% / 3);">{{mitem}}</view>
 							</block>
 						</view>
 					</view>
@@ -40,15 +39,15 @@
 				<!-- 占位 -->
 				<view :style="{height: `${calHeight - 320}rpx`}"></view>
 			</scroll-view>
+
+
 		</view>
 	</view>
 </template>
 
 <script>
-	import {
-		sortResources as resources
-	} from './sortResources';
 	import $U from '@/common/unit';
+	import {sortResources as resources} from './sortResources';
 	export default {
 		data() {
 			return {
@@ -61,8 +60,7 @@
 		computed: {
 			// 左侧数据
 			leftListRes() {
-				let res = resources.map(item => item.text);
-				console.log(res)
+				let res = resources.map(item => item.text)
 				return res
 			},
 			// 右侧数据
@@ -96,5 +94,7 @@
 </script>
 
 <style>
-
+	.selected {
+		color: #f7646d;
+	}
 </style>

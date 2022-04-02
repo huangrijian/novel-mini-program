@@ -22,6 +22,7 @@
 		},
 		methods: {
 			toBookDetail(id) {
+				console.log(id)
 				uni.navigateTo({
 					url: `/pages/bookDetail/bookDetail?bookID=${id}`
 				})
