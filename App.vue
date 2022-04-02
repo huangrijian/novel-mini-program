@@ -1,5 +1,8 @@
 <script>
 	export default {
+		globalData:{
+			collectedBooks: []
+		},
 		onLaunch: function() {
 			console.log('App Launch')
 		},
