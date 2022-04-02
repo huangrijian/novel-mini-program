@@ -48,7 +48,7 @@
 <script>
 	let currentBookID;
 	let collecedBooks = getApp().globalData.collectedBooks;
-
+	
 	import $U from '@/common/unit';
 	export default {
 		data() {
@@ -92,6 +92,8 @@
 
 				// 收藏或取消收藏
 				let index = collecedBooks.findIndex(item => item.id === currentBookID);
+				
+				
 
 				this.collectStatus ? collecedBooks.push(this.currentBook) : collecedBooks.splice(index, 1)
 			}
